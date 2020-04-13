@@ -6,13 +6,15 @@
 ## Setup
 
 **Download Composer dependencies**  
-Make sure you have [Composer installed](https://getcomposer.org/download/)
+Make sure you have [Composer installed](https://getcomposer.org/download/) 
 and then run:   
 ```
 composer install
 ```
+
 You may alternatively need to run `php composer.phar install`, depending
 on how you installed Composer.  
+
 
 **Check packages:**
 ```
@@ -21,6 +23,16 @@ composer require
 **Start the built-in web server**
 ```
 php bin/console server:run
+```
+
+**Start local Apache web server with  MariaDB database server**
+```angular2html
+sudo /opt/lampp/lampp start
+```
+
+**Create doctrine database**
+```angular2html
+./bin/console doctrine:database:create
 ```
 
 ## Somebody Has To
