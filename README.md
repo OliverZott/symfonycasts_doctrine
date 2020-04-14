@@ -16,10 +16,21 @@ You may alternatively need to run `php composer.phar install`, depending
 on how you installed Composer.  
 
 
-**Check packages:**
+**Check / update packages:**
 ```
 composer require
 ```
+
+**Install Doctrine**
+```angular2html
+composer require doctrine
+```
+
+**Install Maker**
+```angular2html
+composer require maker --dev
+```
+
 **Start the built-in web server**
 ```
 php bin/console server:run
@@ -35,29 +46,64 @@ sudo /opt/lampp/lampp start
 ./bin/console doctrine:database:create
 ```
 
-## Somebody Has To
 
-Somebody has to go polish the stars,
-They're looking a little bit dull.
-Somebody has to go polish the stars,
-For the eagles and starlings and gulls
-Have all been complaining they're tarnished and worn,
-They say they want new ones we cannot afford.
-So please get your rags
-And your polishing jars,
-Somebody has to go polish the stars.
 
-Shel Silverstein
+**Check all console commands**
+```angular2html
+php bin/console
+```
 
-## Have Ideas, Feedback or an Issue?
+## ORM - Create Database Entries
+(Article table = Article class )    
 
-If you have suggestions or questions, please feel free to
-open an issue on this repository or comment on the course
-itself. We're watching both :).
+### Maker-bundle
+**Commands** with **maker-bundle**, see `src/Command/ArticleStatsCommand.php` and the
+[Tutorial](https://symfonycasts.com/screencast/symfony-fundamentals/command-fun#play)
 
-## Thanks!
+```angular2html
+php bin/console
+php bin/console make:
+php bin/console make:command
+```
 
-And as always, thanks so much for your support and letting
-us do what we love!
+### Creating an Entity Class
+[Doctrine Annotations](https://www.doctrine-project.org/projects/doctrine-orm/en/2.7/reference/annotations-reference.html)
+```angular2html
+php bin/console make:entity -h
+```
++ `src/Entity/Article.php`
++ `src/Repository/ArticleRepository.php`
++ Doctrine now knows, to save data to "article" table, but it doesnt exist yet.
+### Database Migrations
+[Doctrine Migration Bundle](https://symfony.com/doc/current/bundles/DoctrineMigrationsBundle/index.html)
 
-<3 Your friends at KnpUniversity
+Create corresponding article-tables:
+```angular2html
+php bin/console make:migration
+```
++ `src/Migrations/Version....php`
++ holds SQL commands 
+
+Execute migration:
+```angular2html
+php bin/console doctrine:migrations:migrate
+php bin/console doctrine:migrations:status
+```
++ migration gets `migration_versions`,to check if up-to-date
++ *dev* / *prod* separate migrations!
+
+Example: small change in `Article.php` -> slug unique=true
+```angular2html
+php bin/console make:migration
+php bin/console doctrine:migrations:status
+php bin/console doctrine:migrations:migrate
+```
+
+
+
+
+
+
+
+
+## ...
