@@ -99,10 +99,27 @@ php bin/console doctrine:migrations:status
 php bin/console doctrine:migrations:migrate
 ```
 
+### Entities (Database Entries)
+1. Create `ArticleAdminController.php` and create new class `/Entity/Article`
+Check Doctrine - Entity Manager
+    ```
+    php bin/console debug:autowiring
+    
+    EntityManager interface
+    Doctrine\ORM\EntityManagerInterface (doctrine.orm.default_entity_manager)
+    ```
+2. Usage of Doctrine - Entity Manager
+    ```
+    $em->persist($article);
+    $em->flush();
+    ```
 
-
-
-
+3. Refresh Page and Check:
+    ```
+    php bin/console doctrine:query:sql -h
+    php bin/console doctrine:query:sql 'SELECT * FROM article'
+    ```
+    
 
 
 
