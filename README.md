@@ -114,13 +114,24 @@ Check Doctrine - Entity Manager
     $em->flush();
     ```
 
-3. Refresh Page and Check:
+3. Refresh page and check:
     ```
     php bin/console doctrine:query:sql -h
     php bin/console doctrine:query:sql 'SELECT * FROM article'
     ```
-    
+### Querying for Data
+1. Entity Manager in `ArticleController.php` and get **repository**
+    ```
+    $repository = $em->getRepository(Article::class);
+    $article = $repository->findOneBy(['slug' => $slug]);
+    ```
+2.
 
+3. Testing:
+    ```angular
+    http://127.0.0.1:8000/news/why-asteroids-taste-like-bacon-
+    http://127.0.0.1:8000/news/why-asteroids-taste-like-bacon-200
+    ```
 
 
 ## ...
